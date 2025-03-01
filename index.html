@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crazee>\<</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            overflow: hidden;
+            animation: backgroundTransition 10s infinite alternate ease-in-out;
+            transition: background-color 0.5s ease-in-out;
+            position: relative;
+        }
+
+        @keyframes backgroundTransition {
+            0% { background-color: #fde2e4; }
+            50% { background-color: #fbc3bc; }
+            100% { background-color: #d8bfd8; }
+        }
+
+        .lyrics {
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+            animation: fadeIn 3s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .verse, .chorus {
+            font-size: 22px;
+            font-weight: bold;
+            animation: bounce 2s infinite alternate ease-in-out;
+        }
+
+        .verse { color: #ff6b81; }
+        .chorus { color: #d63384; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: floatHearts 5s linear infinite;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Image Styling */
+        .image {
+            position: absolute;
+            width: 160px; /* Adjust size */
+            height:100 auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .left-image { left: 30px; top: 30%; }
+        .right-image-1 { right: 30px; top: 25%; }
+        .right-image-2 { right: 30px; top: 60%; }
+        .bottom-image { bottom: 400px; left: 45%; transform 
+        translateX(-50%);}
+        .top-image { 
+    width: 550px; /* Pwede mong palitan ang size */
+    top: 300px; /* Itinaas para hindi masyadong dikit sa lyrics */
+    left: 50%;
+    transform: translateX(-50%);
+/* Floating Effect */
+@keyframes floatUpDown {
+    from { transform: translateX(-50%) translateY(0); }
+    to { transform: translateX(-50%) translateY(15px); } /* Mas halatang paggalaw */
+}
+    </style>
+</head>
+<body onclick="changeBackground()">
+
+    <!-- Background Music -->
+    <audio autoplay loop controls>
+        <source src="/music/glue_song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="lyrics">
+        <div class="verse">
+            <p onclick="createHeart(event)">Finding the right words to use for this song</p>
+            <p onclick="createHeart(event)">I have you in mind, so it won't take so long</p>
+            <p onclick="createHeart(event)">Never thought I'd find you, but you're here, and so I love you</p>
+            <p onclick="createHeart(event)">I'm not wrong when I say, "I've been stuck by the glue onto you"</p>
+            <p onclick="createHeart(event)">I've been stuck by glue</p>
+            <p onclick="createHeart(event)">Right onto you</p>
+            <p onclick="createHeart(event)">I've been stuck by glue</p>
+        </div>
+
+        <div class="chorus">
+            <p onclick="createHeart(event)">Don't forget to kiss me</p>
+            <p onclick="createHeart(event)">Or else you'll have to miss me</p>
+            <p onclick="createHeart(event)">I guess I'm stuck forever</p>
+            <p onclick="createHeart(event)">By the glue, oh, and you</p>
+        </div>
+    </div>
+
+    <!-- Floating Hearts Script -->
+    <script>
+        function createHeart(event) {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = event.clientX + "px";
+            heart.style.top = event.clientY + "px";
+            heart.style.position = "absolute";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s"; 
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        function changeBackground() {
+            const colors = ["#fde2e4", "#fbc3bc", "#d8bfd8", "#ffdbac", "#b5e7a0", "#add8e6"];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createBackgroundHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 15 + "px";
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 10000);
+        }
+
+        setInterval(createBackgroundHeart, 500);
+    </script>
+
+    <!-- Images -->
+    <img src="/image/image1.jpg" alt="Left Side Image" class="image left-image">
+    <img src="/image/image2.jpg" alt="Right Side Image 1" class="image right-image-1">
+    <img src="/image/image3.jpg" alt="Right Side Image 2" class="image right-image-2">
+    <img src="/image/image4.jpg" alt="Bottom Image" class="image bottom-image">
+    <img src="/image/animated_image.gif" alt="Top Center GIF" class="image top-image">
+    
+}
+</body>
+</html>
