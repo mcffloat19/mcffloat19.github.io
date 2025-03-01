@@ -1,0 +1,13 @@
+.top-image { 
+    width: 160px; /* Pwede mong palitan ang size */
+    top: 15px; /* Itinaas para hindi masyadong dikit sa lyrics */
+    left: 50%;
+    transform: translateX(-50%);
+    animation: floatUpDown 4s infinite alternate ease-in-out;
+}
+
+/* Floating effect */
+@keyframes floatUpDown {
+    from { transform: translateX(-50%) translateY(0); }
+    to { transform: translateX(-50%) translateY(10px); }
+}
